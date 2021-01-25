@@ -1,0 +1,265 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "Data_HEX1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "Data_HEX1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "Data_HEX1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "Data_HEX1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "Data_HEX1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "Data_HEX1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "Data_HEX1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "Data_HEX0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "Data_HEX0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "Data_HEX0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "Data_HEX0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "Data_HEX0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "Data_HEX0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "Data_HEX0[6]",
+					"strict" : false
+				},
+				{
+					"name" : "Rs_HEX1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "Rs_HEX1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "Rs_HEX1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "Rs_HEX1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "Rs_HEX1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "Rs_HEX1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "Rs_HEX1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "Rs_HEX0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "Rs_HEX0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "Rs_HEX0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "Rs_HEX0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "Rs_HEX0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "Rs_HEX0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "Rs_HEX0[6]",
+					"strict" : false
+				},
+				{
+					"name" : "Rt_HEX1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "Rt_HEX1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "Rt_HEX1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "Rt_HEX1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "Rt_HEX1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "Rt_HEX1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "Rt_HEX1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "Rt_HEX0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "Rt_HEX0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "Rt_HEX0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "Rt_HEX0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "Rt_HEX0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "Rt_HEX0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "Rt_HEX0[6]",
+					"strict" : false
+				},
+				{
+					"name" : "HazardDetection",
+					"strict" : false
+				},
+				{
+					"name" : "ExcuteStatus[0]",
+					"strict" : false
+				},
+				{
+					"name" : "ExcuteStatus[1]",
+					"strict" : false
+				},
+				{
+					"name" : "ExcuteStatus[2]",
+					"strict" : false
+				},
+				{
+					"name" : "ExcuteStatus[3]",
+					"strict" : false
+				},
+				{
+					"name" : "Data[7]",
+					"strict" : false
+				},
+				{
+					"name" : "Data[4]",
+					"strict" : false
+				},
+				{
+					"name" : "Data[6]",
+					"strict" : false
+				},
+				{
+					"name" : "Data[5]",
+					"strict" : false
+				},
+				{
+					"name" : "Data[3]",
+					"strict" : false
+				},
+				{
+					"name" : "Data[0]",
+					"strict" : false
+				},
+				{
+					"name" : "Data[2]",
+					"strict" : false
+				},
+				{
+					"name" : "Data[1]",
+					"strict" : false
+				},
+				{
+					"name" : "Instruction[3]",
+					"strict" : false
+				},
+				{
+					"name" : "Instruction[2]",
+					"strict" : false
+				},
+				{
+					"name" : "Instruction[0]",
+					"strict" : false
+				},
+				{
+					"name" : "Instruction[1]",
+					"strict" : false
+				},
+				{
+					"name" : "Clock",
+					"strict" : false
+				},
+				{
+					"name" : "Instruction[4]",
+					"strict" : false
+				},
+				{
+					"name" : "Instruction[5]",
+					"strict" : false
+				},
+				{
+					"name" : "Instruction[6]",
+					"strict" : false
+				},
+				{
+					"name" : "Instruction[7]",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

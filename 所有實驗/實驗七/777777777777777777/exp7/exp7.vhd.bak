@@ -1,0 +1,15 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity exp7 is
+	port( Data: in std_logic_vector(7 downto 0);
+			Control: in std_logic_vector(7 downto 0);
+			Clock: in std_logic;
+			HEX_Bus: out std_logic_vector(13 downto 0);
+			HEX_Rs: out std_logic_vector(13 downto 0);
+			HEX_Rt: out std_logic_vector(13 downto 0));
+end exp7;
+
+architecture exp7_arch of exp7 is
+
+

@@ -1,0 +1,209 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+--use ieee.std_logic_unsigned.all;
+use ieee.numeric_std_unsigned.all;
+
+entity Simple_CPU is
+	port( Data: in std_logic_vector(7 downto 0);
+			Control: in std_logic_vector(7 downto 0);
+			--Control(7~4) : Opcode
+			--Control(3~2) : Rs
+			--Control(1~0) : Rt
+			Clock: in std_logic;
+			D_Bus: out std_logic_vector(7 downto 0);
+			D_Rs: out std_logic_vector(7 downto 0);
+			D_Rt: out std_logic_vector(7 downto 0));
+end Simple_CPU;
+
+architecture CPU_arch of Simple_CPU is
+
+	signal R3, R2, R1, R0: std_logic_vector(7 downto 0);
+	
+	signal Opcode: std_logic_vector(3 downto 0);
+	signal Rs_pointer: std_logic_vector(1 downto 0);
+	signal Rt_pointer: std_logic_vector(1 downto 0);
+	
+begin
+	
+	Opcode <= Control(7 downto 4);
+	Rs_pointer: Control(3 downto 2);
+	Rt_pointer: Control(1 downto 0);
+	
+	process(Clock)
+		variable tmpRs, tmpRt: std_logic_vector(7 downto 0);
+		
+	begin
+		if rising_edge(Clock) then
+			case Opcode is
+				when "0000" =>		--Load
+					tmpRs := Data;
+					
+					case Rs_pointer is
+						when "00" => R0 <= tmpRs;
+						when "01" => R1 <= tmpRs;
+						when "10" => R2 <= tmpRs;
+						when others => R3 <= tmpRs;
+					end case;
+				when "0001" => 	--Move
+					case Rt_pointer is
+						when "00" => tmpRt := R0;
+						when "01" => tmpRt := R1;
+						when "10" => tmpRt := R2;
+						when others => tmpRt := R3;
+					end case;
+					
+					case Rs_pointer is
+						when "00" => R0 <= tmpRt;
+						when "01" => R1 <= tmpRt;
+						when "10" => R2 <= tmpRt;
+						when others => R3 <= tmpRt;
+					end case;
+				when "0010" => 	--Add
+					case Rs_pointer is
+						when "00" => tmpRs := R0;
+						when "01" => tmpRs := R1;
+						when "10" => tmpRs := R2;
+						when others => tmpRs := R3;
+					end case;
+					
+					case Rt_pointer is
+						when "00" => tmpRt := R0;
+						when "01" => tmpRt := R1;
+						when "10" => tmpRt := R2;
+						when others => tmpRt := R3;
+					end case;
+					
+					tmpRs := tmpRs + tmpRt;
+					
+					case Rs_pointer is
+						when "00" => R0 <= tmpRs;
+						when "01" => R1 <= tmpRs;
+						when "10" => R2 <= tmpRs;
+						when others => R3 <= tmpRs;
+					end case;
+				when "0011" => 	--Sub
+					case Rs_pointer is
+						when "00" => tmpRs := R0;
+						when "01" => tmpRs := R1;
+						when "10" => tmpRs := R2;
+						when others => tmpRs := R3;
+					end case;
+					
+					case Rt_pointer is
+						when "00" => tmpRt := R0;
+						when "01" => tmpRt := R1;
+						when "10" => tmpRt := R2;
+						when others => tmpRt := R3;
+					end case;
+					
+					tmpRs := tmpRs - tmpRt;
+					
+					case Rs_pointer is
+						when "00" => R0 <= tmpRs;
+						when "01" => R1 <= tmpRs;
+						when "10" => R2 <= tmpRs;
+						when others => R3 <= tmpRs;
+					end case;
+				when "0100" => 	--And
+					case Rs_pointer is
+						when "00" => tmpRs := R0;
+						when "01" => tmpRs := R1;
+						when "10" => tmpRs := R2;
+						when others => tmpRs := R3;
+					end case;
+					
+					case Rt_pointer is
+						when "00" => tmpRt := R0;
+						when "01" => tmpRt := R1;
+						when "10" => tmpRt := R2;
+						when others => tmpRt := R3;
+					end case;
+					
+					tmpRs := tmpRs and tmpRt;
+					
+					case Rs_pointer is
+						when "00" => R0 <= tmpRs;
+						when "01" => R1 <= tmpRs;
+						when "10" => R2 <= tmpRs;
+						when others => R3 <= tmpRs;
+					end case;
+				when "0101" => 	--Or
+					case Rs_pointer is
+						when "00" => tmpRs := R0;
+						when "01" => tmpRs := R1;
+						when "10" => tmpRs := R2;
+						when others => tmpRs := R3;
+					end case;
+					
+					case Rt_pointer is
+						when "00" => tmpRt := R0;
+						when "01" => tmpRt := R1;
+						when "10" => tmpRt := R2;
+						when others => tmpRt := R3;
+					end case;
+					
+					tmpRs := tmpRs or tmpRt;
+					
+					case Rs_pointer is
+						when "00" => R0 <= tmpRs;
+						when "01" => R1 <= tmpRs;
+						when "10" => R2 <= tmpRs;
+						when others => R3 <= tmpRs;
+					end case;
+				when "0110" => 	--Nor
+					case Rs_pointer is
+						when "00" => tmpRs := R0;
+						when "01" => tmpRs := R1;
+						when "10" => tmpRs := R2;
+						when others => tmpRs := R3;
+					end case;
+					
+					case Rt_pointer is
+						when "00" => tmpRt := R0;
+						when "01" => tmpRt := R1;
+						when "10" => tmpRt := R2;
+						when others => tmpRt := R3;
+					end case;
+					
+					tmpRs := tmpRs nor tmpRt;
+					
+					case Rs_pointer is
+						when "00" => R0 <= tmpRs;
+						when "01" => R1 <= tmpRs;
+						when "10" => R2 <= tmpRs;
+						when others => R3 <= tmpRs;
+					end case;
+				when "0111" => 	--Slt
+					case Rs_pointer is
+						when "00" => tmpRs := R0;
+						when "01" => tmpRs := R1;
+						when "10" => tmpRs := R2;
+						when others => tmpRs := R3;
+					end case;
+					
+					case Rt_pointer is
+						when "00" => tmpRt := R0;
+						when "01" => tmpRt := R1;
+						when "10" => tmpRt := R2;
+						when others => tmpRt := R3;
+					end case;
+					
+					if unsigned(tmpRs) < unsigned(tmpRt) then
+						tmpRs := "11111111";
+					else
+						tmpRs := "00000000";
+					end if;
+					
+					case Rs_pointer is
+						when "00" => R0 <= tmpRs;
+						when "01" => R1 <= tmpRs;
+						when "10" => R2 <= tmpRs;
+						when others => R3 <= tmpRs;
+					end case;
+				when others =>		--Div
+					--ignore
+			end case;
+		end if;
+	end process;
+end CPU_arch;

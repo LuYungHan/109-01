@@ -1,0 +1,14 @@
+Library ieee ;
+USE ieee.std_logic_1164.all;
+ENTITY tutorial IS 
+PORT (x1,x2,x3,x4 : IN STD_LOGIC ;
+      f , g       : OUT STD_LOGIC ) ;
+END tutorial ;
+
+ARCHITECTURE LogicFunc OF tutorial IS
+BEGIN 
+f <= ( x1 AND x3) OR (NOT x3 AND x2 );
+g <= (NOT x3 OR x1) AND ( NOT x3 OR x4) ;
+END LogicFunc ;
+
+	

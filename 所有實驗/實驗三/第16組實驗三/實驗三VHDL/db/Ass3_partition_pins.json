@@ -1,0 +1,137 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "out1",
+					"strict" : false
+				},
+				{
+					"name" : "out2",
+					"strict" : false
+				},
+				{
+					"name" : "out3",
+					"strict" : false
+				},
+				{
+					"name" : "out4",
+					"strict" : false
+				},
+				{
+					"name" : "out5",
+					"strict" : false
+				},
+				{
+					"name" : "out6",
+					"strict" : false
+				},
+				{
+					"name" : "out7",
+					"strict" : false
+				},
+				{
+					"name" : "out8",
+					"strict" : false
+				},
+				{
+					"name" : "out9",
+					"strict" : false
+				},
+				{
+					"name" : "out10",
+					"strict" : false
+				},
+				{
+					"name" : "out11",
+					"strict" : false
+				},
+				{
+					"name" : "out12",
+					"strict" : false
+				},
+				{
+					"name" : "out13",
+					"strict" : false
+				},
+				{
+					"name" : "out14",
+					"strict" : false
+				},
+				{
+					"name" : "ALUctrl[0]",
+					"strict" : false
+				},
+				{
+					"name" : "ALUctrl[2]",
+					"strict" : false
+				},
+				{
+					"name" : "B[3]",
+					"strict" : false
+				},
+				{
+					"name" : "ALUctrl[1]",
+					"strict" : false
+				},
+				{
+					"name" : "ALUctrl[3]",
+					"strict" : false
+				},
+				{
+					"name" : "A[3]",
+					"strict" : false
+				},
+				{
+					"name" : "A[2]",
+					"strict" : false
+				},
+				{
+					"name" : "A[1]",
+					"strict" : false
+				},
+				{
+					"name" : "B[0]",
+					"strict" : false
+				},
+				{
+					"name" : "A[0]",
+					"strict" : false
+				},
+				{
+					"name" : "B[1]",
+					"strict" : false
+				},
+				{
+					"name" : "B[2]",
+					"strict" : false
+				},
+				{
+					"name" : "A[5]",
+					"strict" : false
+				},
+				{
+					"name" : "A[4]",
+					"strict" : false
+				},
+				{
+					"name" : "B[4]",
+					"strict" : false
+				},
+				{
+					"name" : "B[5]",
+					"strict" : false
+				},
+				{
+					"name" : "A[6]",
+					"strict" : false
+				},
+				{
+					"name" : "B[6]",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

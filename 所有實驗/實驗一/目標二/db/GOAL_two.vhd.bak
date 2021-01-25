@@ -1,0 +1,24 @@
+Library ieee;
+USE ieee.std_logic_1164.all;
+ENTITY seven_segment_display IS
+PORT (W,X,Y,Z,w,x,y,z         : IN STD_LOGIC;
+      A,B,C,D,E,F,G,a,b,c,d,e,f,g   : OUT STD_LOGIC);
+END seven_segment_display;
+ARCHITECTURE LogicFunc OF seven_segment_display IS
+BEGIN
+A <= (X AND NOT Y AND NOT Z) OR (W AND X AND NOT Y) OR (NOT W AND NOT X AND NOT Y AND Z) OR (W AND NOT X AND Y AND Z);
+B <= (X AND Y AND NOT Z) OR (W AND X AND Y) OR (W AND Y AND Z) OR (W AND X AND NOT Z) OR (NOT W AND X AND NOT Y AND Z);
+C <= (NOT W AND NOT X AND Y AND NOT Z) OR (W AND X AND NOT Z) OR (W AND X AND Y);
+D <= (NOT X AND NOT Y AND Z) OR (NOT W AND X AND NOT Y AND NOT Z) OR (X AND Y AND Z) OR (W AND NOT X AND Y AND NOT Z);
+E <= (NOT W AND Z) OR (NOT W AND X AND NOT Y) OR (NOT X AND NOT Y AND Z);
+F <= (NOT W AND NOT X AND Z) OR (NOT W AND NOT X AND Y) OR (NOT W AND Y AND Z) OR (W AND X AND NOT Y);
+G <= (NOT W AND NOT X AND NOT Y) OR (NOT W AND X AND Y AND Z);
+
+a <= (x AND NOT y AND NOT z) OR (w AND x AND NOT y) OR (NOT w AND NOT x AND NOT y AND z) OR (w AND NOT x AND y AND z);
+b <= (x AND y AND NOT z) OR (w AND x AND y) OR (w AND y AND z) OR (w AND x AND NOT z) OR (NOT w AND x AND NOT y AND z);
+c <= (NOT w AND NOT x AND y AND NOT z) OR (w AND x AND NOT z) OR (w AND x AND y);
+d <= (NOT x AND NOT y AND z) OR (NOT w AND x AND NOT y AND NOT z) OR (x AND y AND z) OR (w AND NOT x AND y AND NOT z);
+e <= (NOT w AND z) OR (NOT w AND x AND NOT y) OR (NOT x AND NOT y AND z);
+f <= (NOT w AND NOT x AND z) OR (NOT w AND NOT x AND y) OR (NOT w AND y AND z) OR (w AND x AND NOT y);
+g <= (NOT w AND NOT x AND NOT y) OR (NOT w AND x AND y AND z);
+END LogicFunc;

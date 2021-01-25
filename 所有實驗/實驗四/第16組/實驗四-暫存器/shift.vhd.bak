@@ -1,0 +1,33 @@
+library ieee;
+use ieee.std_logic_1164.all;
+entity SHIFT is
+port(
+	CLK,C0 :in std_logic;
+	MD	   :in std_logic_vector(2 downto 0);
+	D	   :in std_logic_vector(7 downto 0);
+	QB     :buffer std_logic_vector(7 downto 0);
+	CN     :out std_logic);
+end entity SHIFT;
+architecture BHV of SHIFT is
+	signal REG : std_logic_vector(7 downto 0);
+	signal CY  : std_logic;
+begin
+	process(CLK,MD,C0)
+	begin
+		if CLK'EVENT AND CLK='1' then
+			case MD is
+		when "001" =>REG(0)<=C0;
+		REG(7 downto 1)<=REG(6 downto 0); CY<=REG(7);
+		when "010" =>REG(7)<=C0;
+		REG(6 downto 0)<=REG(7 downto 1); CY<=REG(7);
+		when "011" =>REG(0)<=REG(7);
+		REG(7 downto 1)<=REG(6 downto 0); CY<=REG(7);
+		when "100" =>REG(7)<=REG(0);
+		REG(6 downto 0)<=REG(7 downto 1); CY<=REG(7);
+		when "101" =>REG(7 downto 0)<= D(7 downto 0);
+		when others =>REG<=REG; CY<=CY;
+		end case;
+		end if;
+		end process;
+		QB(7 downto 0)<=REG(7 downto 0);  CN<=CY;
+end BHV;

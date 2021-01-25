@@ -1,0 +1,536 @@
+|sev_bit_ALU
+ALUctrl[0] => one_bit_ALU:G1:0:G2:stage1.ALUctrl[0]
+ALUctrl[0] => one_bit_ALU:G1:1:G3:stage2.ALUctrl[0]
+ALUctrl[0] => one_bit_ALU:G1:2:G3:stage2.ALUctrl[0]
+ALUctrl[0] => one_bit_ALU:G1:3:G3:stage2.ALUctrl[0]
+ALUctrl[0] => one_bit_ALU:G1:4:G3:stage2.ALUctrl[0]
+ALUctrl[0] => one_bit_ALU:G1:5:G3:stage2.ALUctrl[0]
+ALUctrl[0] => one_bit_ALU:G1:6:G4:stage3.ALUctrl[0]
+ALUctrl[1] => sign.IN0
+ALUctrl[1] => one_bit_ALU:G1:0:G2:stage1.ALUctrl[1]
+ALUctrl[1] => one_bit_ALU:G1:1:G3:stage2.ALUctrl[1]
+ALUctrl[1] => one_bit_ALU:G1:2:G3:stage2.ALUctrl[1]
+ALUctrl[1] => one_bit_ALU:G1:3:G3:stage2.ALUctrl[1]
+ALUctrl[1] => one_bit_ALU:G1:4:G3:stage2.ALUctrl[1]
+ALUctrl[1] => one_bit_ALU:G1:5:G3:stage2.ALUctrl[1]
+ALUctrl[1] => one_bit_ALU:G1:6:G4:stage3.ALUctrl[1]
+ALUctrl[2] => sign.IN1
+ALUctrl[2] => one_bit_ALU:G1:0:G2:stage1.ALUctrl[2]
+ALUctrl[2] => one_bit_ALU:G1:1:G3:stage2.ALUctrl[2]
+ALUctrl[2] => one_bit_ALU:G1:2:G3:stage2.ALUctrl[2]
+ALUctrl[2] => one_bit_ALU:G1:3:G3:stage2.ALUctrl[2]
+ALUctrl[2] => one_bit_ALU:G1:4:G3:stage2.ALUctrl[2]
+ALUctrl[2] => one_bit_ALU:G1:5:G3:stage2.ALUctrl[2]
+ALUctrl[2] => one_bit_ALU:G1:6:G4:stage3.ALUctrl[2]
+ALUctrl[3] => one_bit_ALU:G1:0:G2:stage1.ALUctrl[3]
+ALUctrl[3] => one_bit_ALU:G1:1:G3:stage2.ALUctrl[3]
+ALUctrl[3] => one_bit_ALU:G1:2:G3:stage2.ALUctrl[3]
+ALUctrl[3] => one_bit_ALU:G1:3:G3:stage2.ALUctrl[3]
+ALUctrl[3] => one_bit_ALU:G1:4:G3:stage2.ALUctrl[3]
+ALUctrl[3] => one_bit_ALU:G1:5:G3:stage2.ALUctrl[3]
+ALUctrl[3] => one_bit_ALU:G1:6:G4:stage3.ALUctrl[3]
+A[0] => one_bit_ALU:G1:0:G2:stage1.A
+A[1] => one_bit_ALU:G1:1:G3:stage2.A
+A[2] => one_bit_ALU:G1:2:G3:stage2.A
+A[3] => one_bit_ALU:G1:3:G3:stage2.A
+A[4] => one_bit_ALU:G1:4:G3:stage2.A
+A[5] => one_bit_ALU:G1:5:G3:stage2.A
+A[6] => one_bit_ALU:G1:6:G4:stage3.A
+B[0] => one_bit_ALU:G1:0:G2:stage1.B
+B[1] => one_bit_ALU:G1:1:G3:stage2.B
+B[2] => one_bit_ALU:G1:2:G3:stage2.B
+B[3] => one_bit_ALU:G1:3:G3:stage2.B
+B[4] => one_bit_ALU:G1:4:G3:stage2.B
+B[5] => one_bit_ALU:G1:5:G3:stage2.B
+B[6] => one_bit_ALU:G1:6:G4:stage3.B
+out1 <= sevseg:output.a2
+out2 <= sevseg:output.b2
+out3 <= sevseg:output.c2
+out4 <= sevseg:output.d2
+out5 <= sevseg:output.e2
+out6 <= sevseg:output.f2
+out7 <= sevseg:output.g2
+out8 <= sevseg:output.a
+out9 <= sevseg:output.b
+out10 <= sevseg:output.c
+out11 <= sevseg:output.d
+out12 <= sevseg:output.e
+out13 <= sevseg:output.f
+out14 <= sevseg:output.g
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:0:G2:stage1
+ALUctrl[0] => mux4to1:mux4_1.s[0]
+ALUctrl[1] => mux4to1:mux4_1.s[1]
+ALUctrl[2] => mux2to1:mux2_2.s
+ALUctrl[3] => mux2to1:mux2_1.s
+A => mux2to1:mux2_1.input[0]
+A => mux2to1:mux2_1.input[1]
+B => mux2to1:mux2_2.input[0]
+B => mux2to1:mux2_2.input[1]
+less => mux4to1:mux4_1.input[3]
+carryin => fulladder:add1.Cin
+result <= mux4to1:mux4_1.f
+set <= fulladder:add1.S
+carryout <= fulladder:add1.Cout
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:0:G2:stage1|mux2to1:mux2_1
+input[0] => f.DATAB
+input[1] => f.DATAA
+s => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:0:G2:stage1|mux2to1:mux2_2
+input[0] => f.DATAB
+input[1] => f.DATAA
+s => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:0:G2:stage1|fulladder:add1
+Cin => S.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+A => S.IN0
+A => Cout.IN0
+A => Cout.IN1
+B => S.IN1
+B => Cout.IN1
+B => Cout.IN1
+S <= S.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:0:G2:stage1|mux4to1:mux4_1
+input[0] => Mux0.IN3
+input[1] => Mux0.IN2
+input[2] => Mux0.IN1
+input[3] => Mux0.IN0
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:1:G3:stage2
+ALUctrl[0] => mux4to1:mux4_1.s[0]
+ALUctrl[1] => mux4to1:mux4_1.s[1]
+ALUctrl[2] => mux2to1:mux2_2.s
+ALUctrl[3] => mux2to1:mux2_1.s
+A => mux2to1:mux2_1.input[0]
+A => mux2to1:mux2_1.input[1]
+B => mux2to1:mux2_2.input[0]
+B => mux2to1:mux2_2.input[1]
+less => mux4to1:mux4_1.input[3]
+carryin => fulladder:add1.Cin
+result <= mux4to1:mux4_1.f
+set <= fulladder:add1.S
+carryout <= fulladder:add1.Cout
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:1:G3:stage2|mux2to1:mux2_1
+input[0] => f.DATAB
+input[1] => f.DATAA
+s => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:1:G3:stage2|mux2to1:mux2_2
+input[0] => f.DATAB
+input[1] => f.DATAA
+s => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:1:G3:stage2|fulladder:add1
+Cin => S.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+A => S.IN0
+A => Cout.IN0
+A => Cout.IN1
+B => S.IN1
+B => Cout.IN1
+B => Cout.IN1
+S <= S.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:1:G3:stage2|mux4to1:mux4_1
+input[0] => Mux0.IN3
+input[1] => Mux0.IN2
+input[2] => Mux0.IN1
+input[3] => Mux0.IN0
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:2:G3:stage2
+ALUctrl[0] => mux4to1:mux4_1.s[0]
+ALUctrl[1] => mux4to1:mux4_1.s[1]
+ALUctrl[2] => mux2to1:mux2_2.s
+ALUctrl[3] => mux2to1:mux2_1.s
+A => mux2to1:mux2_1.input[0]
+A => mux2to1:mux2_1.input[1]
+B => mux2to1:mux2_2.input[0]
+B => mux2to1:mux2_2.input[1]
+less => mux4to1:mux4_1.input[3]
+carryin => fulladder:add1.Cin
+result <= mux4to1:mux4_1.f
+set <= fulladder:add1.S
+carryout <= fulladder:add1.Cout
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:2:G3:stage2|mux2to1:mux2_1
+input[0] => f.DATAB
+input[1] => f.DATAA
+s => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:2:G3:stage2|mux2to1:mux2_2
+input[0] => f.DATAB
+input[1] => f.DATAA
+s => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:2:G3:stage2|fulladder:add1
+Cin => S.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+A => S.IN0
+A => Cout.IN0
+A => Cout.IN1
+B => S.IN1
+B => Cout.IN1
+B => Cout.IN1
+S <= S.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:2:G3:stage2|mux4to1:mux4_1
+input[0] => Mux0.IN3
+input[1] => Mux0.IN2
+input[2] => Mux0.IN1
+input[3] => Mux0.IN0
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:3:G3:stage2
+ALUctrl[0] => mux4to1:mux4_1.s[0]
+ALUctrl[1] => mux4to1:mux4_1.s[1]
+ALUctrl[2] => mux2to1:mux2_2.s
+ALUctrl[3] => mux2to1:mux2_1.s
+A => mux2to1:mux2_1.input[0]
+A => mux2to1:mux2_1.input[1]
+B => mux2to1:mux2_2.input[0]
+B => mux2to1:mux2_2.input[1]
+less => mux4to1:mux4_1.input[3]
+carryin => fulladder:add1.Cin
+result <= mux4to1:mux4_1.f
+set <= fulladder:add1.S
+carryout <= fulladder:add1.Cout
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:3:G3:stage2|mux2to1:mux2_1
+input[0] => f.DATAB
+input[1] => f.DATAA
+s => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:3:G3:stage2|mux2to1:mux2_2
+input[0] => f.DATAB
+input[1] => f.DATAA
+s => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:3:G3:stage2|fulladder:add1
+Cin => S.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+A => S.IN0
+A => Cout.IN0
+A => Cout.IN1
+B => S.IN1
+B => Cout.IN1
+B => Cout.IN1
+S <= S.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:3:G3:stage2|mux4to1:mux4_1
+input[0] => Mux0.IN3
+input[1] => Mux0.IN2
+input[2] => Mux0.IN1
+input[3] => Mux0.IN0
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:4:G3:stage2
+ALUctrl[0] => mux4to1:mux4_1.s[0]
+ALUctrl[1] => mux4to1:mux4_1.s[1]
+ALUctrl[2] => mux2to1:mux2_2.s
+ALUctrl[3] => mux2to1:mux2_1.s
+A => mux2to1:mux2_1.input[0]
+A => mux2to1:mux2_1.input[1]
+B => mux2to1:mux2_2.input[0]
+B => mux2to1:mux2_2.input[1]
+less => mux4to1:mux4_1.input[3]
+carryin => fulladder:add1.Cin
+result <= mux4to1:mux4_1.f
+set <= fulladder:add1.S
+carryout <= fulladder:add1.Cout
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:4:G3:stage2|mux2to1:mux2_1
+input[0] => f.DATAB
+input[1] => f.DATAA
+s => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:4:G3:stage2|mux2to1:mux2_2
+input[0] => f.DATAB
+input[1] => f.DATAA
+s => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:4:G3:stage2|fulladder:add1
+Cin => S.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+A => S.IN0
+A => Cout.IN0
+A => Cout.IN1
+B => S.IN1
+B => Cout.IN1
+B => Cout.IN1
+S <= S.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:4:G3:stage2|mux4to1:mux4_1
+input[0] => Mux0.IN3
+input[1] => Mux0.IN2
+input[2] => Mux0.IN1
+input[3] => Mux0.IN0
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:5:G3:stage2
+ALUctrl[0] => mux4to1:mux4_1.s[0]
+ALUctrl[1] => mux4to1:mux4_1.s[1]
+ALUctrl[2] => mux2to1:mux2_2.s
+ALUctrl[3] => mux2to1:mux2_1.s
+A => mux2to1:mux2_1.input[0]
+A => mux2to1:mux2_1.input[1]
+B => mux2to1:mux2_2.input[0]
+B => mux2to1:mux2_2.input[1]
+less => mux4to1:mux4_1.input[3]
+carryin => fulladder:add1.Cin
+result <= mux4to1:mux4_1.f
+set <= fulladder:add1.S
+carryout <= fulladder:add1.Cout
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:5:G3:stage2|mux2to1:mux2_1
+input[0] => f.DATAB
+input[1] => f.DATAA
+s => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:5:G3:stage2|mux2to1:mux2_2
+input[0] => f.DATAB
+input[1] => f.DATAA
+s => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:5:G3:stage2|fulladder:add1
+Cin => S.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+A => S.IN0
+A => Cout.IN0
+A => Cout.IN1
+B => S.IN1
+B => Cout.IN1
+B => Cout.IN1
+S <= S.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:5:G3:stage2|mux4to1:mux4_1
+input[0] => Mux0.IN3
+input[1] => Mux0.IN2
+input[2] => Mux0.IN1
+input[3] => Mux0.IN0
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:6:G4:stage3
+ALUctrl[0] => mux4to1:mux4_1.s[0]
+ALUctrl[1] => mux4to1:mux4_1.s[1]
+ALUctrl[2] => mux2to1:mux2_2.s
+ALUctrl[3] => mux2to1:mux2_1.s
+A => mux2to1:mux2_1.input[0]
+A => mux2to1:mux2_1.input[1]
+B => mux2to1:mux2_2.input[0]
+B => mux2to1:mux2_2.input[1]
+less => mux4to1:mux4_1.input[3]
+carryin => fulladder:add1.Cin
+result <= mux4to1:mux4_1.f
+set <= fulladder:add1.S
+carryout <= fulladder:add1.Cout
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:6:G4:stage3|mux2to1:mux2_1
+input[0] => f.DATAB
+input[1] => f.DATAA
+s => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:6:G4:stage3|mux2to1:mux2_2
+input[0] => f.DATAB
+input[1] => f.DATAA
+s => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:6:G4:stage3|fulladder:add1
+Cin => S.IN1
+Cin => Cout.IN0
+Cin => Cout.IN0
+A => S.IN0
+A => Cout.IN0
+A => Cout.IN1
+B => S.IN1
+B => Cout.IN1
+B => Cout.IN1
+S <= S.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|one_bit_ALU:\G1:6:G4:stage3|mux4to1:mux4_1
+input[0] => Mux0.IN3
+input[1] => Mux0.IN2
+input[2] => Mux0.IN1
+input[3] => Mux0.IN0
+s[0] => Mux0.IN5
+s[1] => Mux0.IN4
+f <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|sev_bit_ALU|sevseg:output
+w => a.IN0
+w => a.IN0
+w => a.IN0
+w => a.IN0
+w => e.IN0
+w => f.IN0
+x => a.IN1
+x => a.IN1
+x => d.IN0
+x => a.IN1
+x => a.IN1
+x => d.IN0
+y => a.IN1
+y => a.IN1
+y => b.IN1
+y => c.IN1
+y => d.IN1
+y => f.IN1
+y => a.IN1
+y => a.IN1
+y => a.IN1
+y => d.IN1
+z => a.IN1
+z => a.IN1
+z => a.IN1
+z => b.IN1
+z => b.IN1
+z => d.IN1
+z => d.IN1
+z => e.IN1
+z => f.IN1
+z => f.IN1
+z => g.IN1
+z => a.IN1
+z => a.IN1
+z => a.IN1
+z => b.IN1
+z => c.IN1
+z => c.IN1
+z => d.IN1
+w2 => a2.IN0
+w2 => a2.IN0
+w2 => a2.IN0
+w2 => a2.IN0
+w2 => e2.IN0
+w2 => f2.IN0
+x2 => a2.IN1
+x2 => a2.IN1
+x2 => d2.IN0
+x2 => a2.IN1
+x2 => a2.IN1
+x2 => d2.IN0
+y2 => a2.IN1
+y2 => a2.IN1
+y2 => b2.IN1
+y2 => c2.IN1
+y2 => d2.IN1
+y2 => f2.IN1
+y2 => a2.IN1
+y2 => a2.IN1
+y2 => a2.IN1
+y2 => d2.IN1
+z2 => a2.IN1
+z2 => a2.IN1
+z2 => a2.IN1
+z2 => b2.IN1
+z2 => b2.IN1
+z2 => d2.IN1
+z2 => d2.IN1
+z2 => e2.IN1
+z2 => f2.IN1
+z2 => f2.IN1
+z2 => g2.IN1
+z2 => a2.IN1
+z2 => a2.IN1
+z2 => a2.IN1
+z2 => b2.IN1
+z2 => c2.IN1
+z2 => c2.IN1
+z2 => d2.IN1
+a <= a.DB_MAX_OUTPUT_PORT_TYPE
+b <= b.DB_MAX_OUTPUT_PORT_TYPE
+c <= c.DB_MAX_OUTPUT_PORT_TYPE
+d <= d.DB_MAX_OUTPUT_PORT_TYPE
+e <= e.DB_MAX_OUTPUT_PORT_TYPE
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+g <= g.DB_MAX_OUTPUT_PORT_TYPE
+a2 <= a2.DB_MAX_OUTPUT_PORT_TYPE
+b2 <= b2.DB_MAX_OUTPUT_PORT_TYPE
+c2 <= c2.DB_MAX_OUTPUT_PORT_TYPE
+d2 <= d2.DB_MAX_OUTPUT_PORT_TYPE
+e2 <= e2.DB_MAX_OUTPUT_PORT_TYPE
+f2 <= f2.DB_MAX_OUTPUT_PORT_TYPE
+g2 <= g2.DB_MAX_OUTPUT_PORT_TYPE
+
+

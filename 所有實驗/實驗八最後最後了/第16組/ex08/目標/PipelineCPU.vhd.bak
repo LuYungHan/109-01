@@ -1,0 +1,24 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+
+entity PipelineCPU is
+	port( Data: buffer std_logic_vector(7 downto 0);
+			Instruction: in std_logic_vector(7 downto 0);
+			--7-4 : Opcode
+			--3-2 : Rs address
+			--1-0 : Rt address
+			Clock: in std_logic;
+			D_Rs: buffer std_logic_vector(7 downto 0);
+			D_Rt: buffer std_logic_vector(7 downto 0));
+end PipelineCPU;
+
+architecture PCPU_arch of PipelineCPU is
+
+
+begin
+	
+	process(Clock)
+	
+	begin
+		

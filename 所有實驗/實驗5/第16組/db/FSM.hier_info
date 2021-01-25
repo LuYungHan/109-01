@@ -1,0 +1,14 @@
+|FSM
+clock => state~2.DATAIN
+resetn => state~4.DATAIN
+w => Selector0.IN3
+w => state.DATAB
+w => Selector1.IN3
+w => state.DATAB
+w => Selector0.IN1
+w => state.DATAB
+y[3] << WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+y[2] << y.DB_MAX_OUTPUT_PORT_TYPE
+y[1] << y.DB_MAX_OUTPUT_PORT_TYPE
+
+
